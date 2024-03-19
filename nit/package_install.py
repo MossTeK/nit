@@ -7,7 +7,7 @@ class NixPackageHelper:
         self.service_name = service_name
         self.pkgs_nix_path = "/etc/nixos/pkgs.nix"
         # Provide the full URL to the raw template.nix file in your repository
-        self.template_url = "https://raw.githubusercontent.com/MossTeK/nit/main/nix/template.nix"
+        self.template_url = "https://raw.githubusercontent.com/MossTeK/nit/dev/nix/template.nix"
         self.destination_path = f"/etc/nixos/pkgs/{os.path.basename(self.service_name)}.nix"
     
     def append_to_pkgs_nix(self):
