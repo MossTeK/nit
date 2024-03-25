@@ -1,5 +1,6 @@
 import subprocess
 import shlex
+import re
 
 class SearchResult:
     def __init__(self, user_input):
@@ -18,9 +19,10 @@ class SearchResult:
         return output.strip().split('\n')
     
     def search_nix(self):
-        command = f"nix-env -qaP {self.package_name} 2>/dev/null | sed 's/^nixos\.//' | cut -d' ' -f1"
+        command = f"nix-env -qaP -A nixos.{self.package_name} | awk '{{print $2}}' | awk -F'-' '{{print $1}}'"
         self.results = self.run_command(command)
     
     def get_results(self):
         self.search_nix()
         return self.results
+    
